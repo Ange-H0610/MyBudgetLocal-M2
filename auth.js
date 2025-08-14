@@ -13,17 +13,14 @@ if(signupForm){
       return;
     }
 
-    // Vérifie si l'utilisateur existe déjà
     if(localStorage.getItem("password_" + username)){
       alert("Ce nom d'utilisateur existe déjà.");
       return;
     }
 
-    // Enregistrement
     localStorage.setItem("username", username);
     localStorage.setItem("password_" + username, password);
 
-    // Redirection vers dashboard
     window.location.href = "dashboard.html";
   });
 }

@@ -10,12 +10,23 @@ document.getElementById("logout").addEventListener("click", () => {
   window.location.href = "index.html";
 });
 
-// Thèmes
-document.getElementById("themeSelect").addEventListener("change", function(){
+// Thèmes (fonctionnel PC + mobile)
+const themeSelect = document.getElementById("themeSelect");
+themeSelect.addEventListener("change", function(){
   document.body.className = this.value;
+  localStorage.setItem("theme", this.value);
 });
 
-// Calcul solde au clic
+// Charger thème sauvegardé
+window.addEventListener("load", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if(savedTheme){
+    document.body.className = savedTheme;
+    themeSelect.value = savedTheme;
+  }
+});
+
+// Calcul solde
 document.getElementById("calculate").addEventListener("click", () => {
   const totalIncome = Number(document.getElementById("incomeSalary").value) +
                       Number(document.getElementById("incomeSocial").value) +
