@@ -1,22 +1,7 @@
-// Login / Signup
-document.getElementById("loginForm")?.addEventListener("submit", e => {
-  e.preventDefault();
-  const username = document.getElementById("username").value;
-  localStorage.setItem("username", username);
-  window.location.href = "dashboard.html";
-});
-document.getElementById("signupForm")?.addEventListener("submit", e => {
-  e.preventDefault();
-  const username = document.getElementById("newUsername").value;
-  localStorage.setItem("username", username);
-  window.location.href = "dashboard.html";
-});
-
 // Dashboard greeting
 window.addEventListener("load", () => {
   const user = localStorage.getItem("username") || "Utilisateur";
-  const greeting = document.getElementById("greeting");
-  if(greeting) greeting.textContent = "Bonjour, " + user;
+  document.getElementById("greeting").textContent = "Bonjour, " + user;
 });
 
 // Logout
@@ -30,8 +15,8 @@ document.getElementById("themeSelect")?.addEventListener("change", function(){
   document.body.className = this.value;
 });
 
-// Calcul budget
-document.getElementById("calculate")?.addEventListener("click", () => {
+// Calculer le solde au clic
+document.getElementById("calculate").addEventListener("click", () => {
   let totalIncome = 0;
   let totalExpense = 0;
 
