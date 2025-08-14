@@ -9,66 +9,53 @@
 <body class="theme-light">
 
 <nav class="navbar">
-  <span id="greeting">Bonjour, Utilisateur</span>
-  <select id="themeSelect">
-    <option value="theme-light">Clair</option>
-    <option value="theme-dark">Sombre</option>
-    <option value="theme-gradient">Dégradé</option>
-  </select>
-  <button id="logout">Déconnexion</button>
+  <div class="nav-left">
+    <span class="project-name">My-Budget_Local</span>
+    <span id="greeting" class="user-greeting"></span>
+  </div>
+  <div class="nav-right">
+    <select id="themeSelect" class="theme-selector">
+      <option value="theme-light">Clair</option>
+      <option value="theme-dark">Sombre</option>
+      <option value="theme-gradient">Dégradé</option>
+    </select>
+    <button id="logout" class="btn-small">Déconnexion</button>
+  </div>
 </nav>
 
 <div class="container">
   <h1>Calculateur de Budget</h1>
 
+  <!-- Revenus -->
   <section class="budget-section">
     <h2>Revenus</h2>
     <table id="incomeTable">
       <thead><tr><th>Catégorie</th><th>Montant (€)</th></tr></thead>
       <tbody>
-        <tr><td>Salaire et autres revenus</td><td><input type="number" id="incomeSalary" value="0"></td></tr>
-        <tr><td>Pensions</td><td><input type="number" id="incomePensions" value="0"></td></tr>
+        <tr><td>Salaire</td><td><input type="number" id="incomeSalary" value="0"></td></tr>
         <tr><td>Allocations sociales</td><td><input type="number" id="incomeSocial" value="0"></td></tr>
-        <tr><td>Loyers / Intérêts / Capital</td><td><input type="number" id="incomeCapital" value="0"></td></tr>
         <tr><td>Autres revenus</td><td><input type="number" id="incomeOther" value="0"></td></tr>
       </tbody>
     </table>
   </section>
 
+  <!-- Dépenses -->
   <section class="budget-section">
     <h2>Dépenses</h2>
     <table id="expenseTable">
       <thead><tr><th>Catégorie</th><th>Montant (€)</th></tr></thead>
       <tbody>
         <tr><td>Loyer et charges</td><td><input type="number" id="expenseRent" value="0"></td></tr>
-        <tr><td>Remboursement emprunt immobilier</td><td><input type="number" id="expenseLoan" value="0"></td></tr>
-        <tr><td>Electricité</td><td><input type="number" id="expenseElectricity" value="0"></td></tr>
-        <tr><td>Gaz</td><td><input type="number" id="expenseGas" value="0"></td></tr>
-        <tr><td>Téléphone / Internet / TV</td><td><input type="number" id="expensePhone" value="0"></td></tr>
+        <tr><td>Electricité / Gaz</td><td><input type="number" id="expenseUtilities" value="0"></td></tr>
         <tr><td>Alimentation</td><td><input type="number" id="expenseFood" value="0"></td></tr>
-        <tr><td>Assurance habitation</td><td><input type="number" id="expenseHomeInsurance" value="0"></td></tr>
-        <tr><td>Vêtements</td><td><input type="number" id="expenseClothes" value="0"></td></tr>
-        <tr><td>Frais financiers courants</td><td><input type="number" id="expenseFinance" value="0"></td></tr>
-        <tr><td>Epargne</td><td><input type="number" id="expenseSavings" value="0"></td></tr>
-        <tr><td>Remboursements crédits</td><td><input type="number" id="expenseCredits" value="0"></td></tr>
-        <tr><td>Autres assurances</td><td><input type="number" id="expenseOtherInsurance" value="0"></td></tr>
-        <tr><td>Ameublement & électroménager</td><td><input type="number" id="expenseFurniture" value="0"></td></tr>
-        <tr><td>Sorties</td><td><input type="number" id="expenseLeisure" value="0"></td></tr>
-        <tr><td>Alcool / Cigarettes</td><td><input type="number" id="expenseAlcohol" value="0"></td></tr>
-        <tr><td>Vacances</td><td><input type="number" id="expenseVacation" value="0"></td></tr>
-        <tr><td>Livres / Musique / Vidéo</td><td><input type="number" id="expenseBooks" value="0"></td></tr>
-        <tr><td>Frais de garde enfants</td><td><input type="number" id="expenseChildCare" value="0"></td></tr>
-        <tr><td>Autres frais enfants</td><td><input type="number" id="expenseChildOther" value="0"></td></tr>
-        <tr><td>Voiture</td><td><input type="number" id="expenseCar" value="0"></td></tr>
-        <tr><td>Autres transports</td><td><input type="number" id="expenseTransportOther" value="0"></td></tr>
-        <tr><td>Impôt sur le revenu</td><td><input type="number" id="expenseIncomeTax" value="0"></td></tr>
-        <tr><td>Impôts locaux</td><td><input type="number" id="expenseLocalTax" value="0"></td></tr>
+        <tr><td>Transport</td><td><input type="number" id="expenseTransport" value="0"></td></tr>
+        <tr><td>Autres dépenses</td><td><input type="number" id="expenseOther" value="0"></td></tr>
       </tbody>
     </table>
   </section>
 
-  <button id="calculate">Calculer le solde</button>
-  <h2 id="result"></h2>
+  <button id="calculate" class="btn-calc">Calculer ton solde</button>
+  <h2 id="result" class="result-balance"></h2>
 </div>
 
 <script src="script.js"></script>
