@@ -1,4 +1,4 @@
-// Login / Signup simple
+// Login / Signup
 document.getElementById("loginForm")?.addEventListener("submit", function(e){
   e.preventDefault();
   const username = document.getElementById("username").value;
