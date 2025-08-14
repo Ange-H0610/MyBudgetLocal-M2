@@ -15,7 +15,7 @@ document.getElementById("themeSelect").addEventListener("change", function(){
   document.body.className = this.value;
 });
 
-// Calcul solde
+// Calcul solde au clic
 document.getElementById("calculate").addEventListener("click", () => {
   const totalIncome = Number(document.getElementById("incomeSalary").value) +
                       Number(document.getElementById("incomeSocial").value) +
