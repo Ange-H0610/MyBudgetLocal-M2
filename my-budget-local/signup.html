@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Signup - My Budget Local</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup - My Budget Local</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-  <h2>Inscription</h2>
-  <input type="text" id="signupUser" placeholder="Nom d'utilisateur">
-  <input type="password" id="signupPass" placeholder="Mot de passe">
-  <button onclick="signup()">S'inscrire</button>
-  <p style="text-align:center;">
-    Déjà un compte ? <a href="index.html">Se connecter</a>
-  </p>
-</div>
-<script src="script.js"></script>
+  <div class="container">
+    <h1>Inscription</h1>
+    <form id="signupForm">
+      <input type="text" id="newUsername" placeholder="Nom d'utilisateur" required>
+      <input type="password" id="newPassword" placeholder="Mot de passe" required>
+      <button type="submit">Créer un compte</button>
+    </form>
+    <p>Déjà inscrit ? <a href="index.html">Se connecter</a></p>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

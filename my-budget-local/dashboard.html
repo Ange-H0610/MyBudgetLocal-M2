@@ -1,83 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Dashboard - My Budget Local</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - My Budget Local</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="navbar">
-  <h3 id="helloUser">Bonjour, Utilisateur</h3>
-  <div>
-    <button onclick="toggleTheme()">Thème</button>
-    <button onclick="logout()">Déconnexion</button>
+  <nav class="navbar">
+    <span id="greeting">Bonjour, utilisateur</span>
+    <button id="logout">Déconnexion</button>
+  </nav>
+
+  <div class="container">
+    <h1>Calculateur de Budget</h1>
+    <table id="budgetTable">
+      <!-- Tableau simplifié -->
+      <thead>
+        <tr>
+          <th>Catégorie</th>
+          <th>Montant (€)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Salaire</td>
+          <td><input type="number" id="income" value="0"></td>
+        </tr>
+        <tr>
+          <td>Dépenses</td>
+          <td><input type="number" id="expense" value="0"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button id="calculate">Calculer</button>
+    <h2 id="result"></h2>
   </div>
-</div>
 
-<div class="container">
-  <h2>Calculateur de Budget Mensuel</h2>
-
-  <h3>Revenus</h3>
-  <table id="revenusTable">
-    <tr>
-      <th>Catégorie</th>
-      <th>Montant €</th>
-      <th>Fréquence</th>
-      <th>Différence</th>
-    </tr>
-    <tr>
-      <td>Salaire et autres revenus</td>
-      <td><input type="number" class="montant" value="0"></td>
-      <td><select class="frequence"><option>Mensuelle</option><option>Hebdomadaire</option><option>Annuel</option></select></td>
-      <td class="diff">0</td>
-    </tr>
-    <tr>
-      <td>Pensions</td>
-      <td><input type="number" class="montant" value="0"></td>
-      <td><select class="frequence"><option>Mensuelle</option><option>Annuel</option></select></td>
-      <td class="diff">0</td>
-    </tr>
-    <tr class="total-row">
-      <td>Total Revenus</td>
-      <td id="totalRevenus">-</td>
-      <td></td>
-      <td id="diffRevenus">-</td>
-    </tr>
-  </table>
-
-  <h3>Dépenses</h3>
-  <table id="depensesTable">
-    <tr>
-      <th>Catégorie</th>
-      <th>Montant €</th>
-      <th>Fréquence</th>
-      <th>Différence</th>
-    </tr>
-    <tr>
-      <td>Loyer et charges</td>
-      <td><input type="number" class="montant" value="0"></td>
-      <td><select class="frequence"><option>Mensuelle</option><option>Annuel</option></select></td>
-      <td class="diff">0</td>
-    </tr>
-    <tr>
-      <td>Alimentation</td>
-      <td><input type="number" class="montant" value="0"></td>
-      <td><select class="frequence"><option>Mensuelle</option><option>Annuel</option></select></td>
-      <td class="diff">0</td>
-    </tr>
-    <tr class="total-row">
-      <td>Total Dépenses</td>
-      <td id="totalDepenses">-</td>
-      <td></td>
-      <td id="diffDepenses">-</td>
-    </tr>
-  </table>
-
-  <h3>Solde : <span id="solde">-</span> €</h3>
-
-  <button onclick="calculerBudget()">Calculer</button>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
