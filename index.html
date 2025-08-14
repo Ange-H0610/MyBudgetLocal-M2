@@ -7,15 +7,17 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-light">
-  <div class="form-container">
-    <h1>Connexion</h1>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Nom d'utilisateur" required>
-      <input type="password" id="password" placeholder="Mot de passe" required>
-      <button type="submit">Se connecter</button>
-    </form>
+
+<div class="auth-container">
+  <h1>Connexion</h1>
+  <form id="loginForm">
+    <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
+    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+    <button type="submit">Se connecter</button>
     <p>Pas encore inscrit ? <a href="signup.html">Créer un compte</a></p>
-  </div>
-<script src="script.js"></script>
+  </form>
+</div>
+
+<script src="auth.js"></script>
 </body>
 </html>

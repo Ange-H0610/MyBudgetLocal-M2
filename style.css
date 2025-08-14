@@ -1,36 +1,36 @@
-/* Font et base */
 body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; }
 body.theme-light { background:#f5f5f5; color:#333; }
 body.theme-dark { background:#222; color:#fff; }
 body.theme-gradient { background: linear-gradient(45deg,#6a11cb,#2575fc); color:#fff; }
 
-/* Navbar */
 .navbar { display:flex; justify-content:space-between; align-items:center; padding:15px; background: rgba(0,0,0,0.7); }
-.project-name { font-family: 'Arial Black', sans-serif; font-size:24px; color:#ff9800; margin-right:20px; }
-.user-greeting { font-size:18px; color:#fff; }
+.project-name { font-family: 'Arial Black', sans-serif; font-size:26px; color:#ff9800; margin-right:20px; }
+.user-greeting { font-size:18px; color:#fff; font-weight:bold; }
 .nav-right select.theme-selector, .nav-right button.btn-small { margin-left:10px; padding:5px 10px; border-radius:5px; cursor:pointer; transition:0.3s; }
 .nav-right button.btn-small { font-size:14px; background:#ff5722; color:#fff; border:none; }
 .nav-right select.theme-selector:hover, .nav-right button.btn-small:hover { opacity:0.8; }
 
-/* Container */
 .container { max-width:800px; margin:50px auto; padding:20px; border-radius:10px; background: rgba(255,255,255,0.1); }
 h1,h2 { text-align:center; }
 
-/* Tables */
 .budget-section { margin-bottom:30px; }
 table { width:100%; border-collapse:collapse; margin-top:10px; }
 th, td { border:1px solid rgba(0,0,0,0.2); padding:8px; text-align:left; }
 input { width:100%; padding:6px; border-radius:5px; border:1px solid #ccc; }
 
-/* Bouton calcul */
 .btn-calc { display:block; margin:20px auto; padding:10px 20px; border:none; border-radius:5px; background:#ff9800; color:#fff; cursor:pointer; font-size:16px; }
 .btn-calc:hover { opacity:0.8; }
 
-/* Résultat */
+.auth-container { max-width:400px; margin:50px auto; padding:20px; border-radius:10px; background: rgba(255,255,255,0.1); text-align:center; }
+.auth-container input { width:100%; margin:10px 0; padding:8px; border-radius:5px; border:1px solid #ccc; }
+.auth-container button { padding:10px 20px; border:none; border-radius:5px; background:#ff9800; color:#fff; cursor:pointer; font-size:16px; margin-top:10px; }
+.auth-container button:hover { opacity:0.8; }
+.auth-container a { color:#ff9800; text-decoration:none; }
+.auth-container a:hover { text-decoration:underline; }
+
 .result-balance { text-align:center; font-size:22px; margin-top:20px; font-weight:bold; color:#4caf50; }
 
-/* Responsive */
 @media (max-width:768px){
-  .container { width:95%; margin:20px auto; padding:10px; }
+  .container, .auth-container { width:95%; margin:20px auto; padding:10px; }
   table, th, td { font-size:12px; }
 }

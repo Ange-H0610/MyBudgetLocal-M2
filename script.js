@@ -1,8 +1,7 @@
-// Afficher le nom de l'utilisateur
+// Afficher nom utilisateur
 window.addEventListener("load", () => {
   const user = localStorage.getItem("username") || "Utilisateur";
-  const greeting = document.getElementById("greeting");
-  greeting.textContent = "Bonjour, " + user;
+  document.getElementById("greeting").textContent = "Bonjour, " + user;
 });
 
 // Déconnexion
@@ -11,27 +10,22 @@ document.getElementById("logout").addEventListener("click", () => {
   window.location.href = "index.html";
 });
 
-// Changement de thème
+// Thèmes
 document.getElementById("themeSelect").addEventListener("change", function(){
   document.body.className = this.value;
 });
 
-// Calculer le solde au clic
+// Calcul solde
 document.getElementById("calculate").addEventListener("click", () => {
-  // Revenus
-  const totalIncome = 
-    Number(document.getElementById("incomeSalary").value) +
-    Number(document.getElementById("incomeSocial").value) +
-    Number(document.getElementById("incomeOther").value);
+  const totalIncome = Number(document.getElementById("incomeSalary").value) +
+                      Number(document.getElementById("incomeSocial").value) +
+                      Number(document.getElementById("incomeOther").value);
 
-  // Dépenses
-  const totalExpense = 
-    Number(document.getElementById("expenseRent").value) +
-    Number(document.getElementById("expenseUtilities").value) +
-    Number(document.getElementById("expenseFood").value) +
-    Number(document.getElementById("expenseTransport").value) +
-    Number(document.getElementById("expenseOther").value);
+  const totalExpense = Number(document.getElementById("expenseRent").value) +
+                       Number(document.getElementById("expenseUtilities").value) +
+                       Number(document.getElementById("expenseFood").value) +
+                       Number(document.getElementById("expenseTransport").value) +
+                       Number(document.getElementById("expenseOther").value);
 
-  const balance = totalIncome - totalExpense;
-  document.getElementById("result").textContent = "Solde total : €" + balance;
+  document.getElementById("result").textContent = "Solde total : €" + (totalIncome - totalExpense);
 });
