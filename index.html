@@ -3,20 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My-Budget_Local - Connexion</title>
+  <title>My-Budget_Local - Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
 </head>
-<body class="theme-light">
-  <div class="auth-container">
-    <h1 class="title">My-Budget_Local</h1>
-    <form id="loginForm">
-      <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
-      <input type="password" id="loginPassword" placeholder="Mot de passe" required>
-      <button type="submit" class="btn-primary">Se connecter</button>
-      <p class="link-text">Pas de compte ? <a href="signup.html">S'inscrire</a></p>
-    </form>
-  </div>
-  <script src="script.js"></script>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <span class="logo">My-Budget_Local</span>
+    </div>
+    <div class="navbar-right">
+      <span id="username-display"></span>
+      <button id="theme-toggle" class="btn-theme">🌙</button>
+      <button id="logout-btn" class="btn-small">Déconnexion</button>
+    </div>
+  </nav>
+
+  <!-- Tableau principal -->
+  <main class="container">
+    <section>
+      <h2>Revenus</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Montant (AR)</th>
+          </tr>
+        </thead>
+        <tbody id="revenus-body">
+          <tr>
+            <td><input type="text" placeholder="Salaire"></td>
+            <td><input type="number" placeholder="0"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="add-revenu">+ Ajouter revenu</button>
+    </section>
+
+    <section>
+      <h2>Dépenses</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Catégorie</th>
+            <th>Montant (AR)</th>
+          </tr>
+        </thead>
+        <tbody id="depenses-body">
+          <tr>
+            <td><input type="text" placeholder="Loyer"></td>
+            <td><input type="number" placeholder="0"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="add-depense">+ Ajouter dépense</button>
+    </section>
+
+    <section class="solde-section">
+      <button id="calculer-solde" class="btn-main">Calculer ton solde</button>
+      <p id="solde-affiche"></p>
+    </section>
+  </main>
 </body>
 </html>

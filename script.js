@@ -1,93 +1,58 @@
-// Sauvegarde utilisateurs
-const users = JSON.parse(localStorage.getItem('users')) || [];
+// Gestion du nom utilisateur
+const username = localStorage.getItem("username") || "Utilisateur";
+document.getElementById("username-display").textContent = "Bonjour, " + username;
 
-// Signup
-if (document.getElementById('signupForm')) {
-  document.getElementById('signupForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const username = document.getElementById('signupUsername').value;
-    const password = document.getElementById('signupPassword').value;
+// Thème clair/sombre
+const themeToggle = document.getElementById("theme-toggle");
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+});
 
-    if (users.some(user => user.username === username)) {
-      alert("Nom déjà utilisé");
-      return;
-    }
-    users.push({ username, password, incomes: [], expenses: [] });
-    localStorage.setItem('users', JSON.stringify(users));
-    localStorage.setItem('loggedInUser', username);
-    window.location.href = 'dashboard.html';
-  });
+// Charger le thème sauvegardé
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
 }
 
-// Login
-if (document.getElementById('loginForm')) {
-  document.getElementById('loginForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-    const user = users.find(u => u.username === username && u.password === password);
-    if (!user) {
-      alert("Identifiants incorrects");
-      return;
-    }
-    localStorage.setItem('loggedInUser', username);
-    window.location.href = 'dashboard.html';
-  });
-}
+// Logout
+document.getElementById("logout-btn").addEventListener("click", () => {
+  localStorage.removeItem("username");
+  window.location.href = "login.html";
+});
 
-// Dashboard
-if (document.getElementById('dashboard')) {
-  const loggedUser = localStorage.getItem('loggedInUser');
-  if (!loggedUser) window.location.href = 'index.html';
+// Ajout revenus
+document.getElementById("add-revenu").addEventListener("click", () => {
+  const tbody = document.getElementById("revenus-body");
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td><input type="text" placeholder="Autre revenu"></td>
+    <td><input type="number" placeholder="0"></td>
+  `;
+  tbody.appendChild(row);
+});
 
-  const user = users.find(u => u.username === loggedUser);
-  document.getElementById('welcomeUser').textContent = `Bonjour ${loggedUser}`;
+// Ajout dépenses
+document.getElementById("add-depense").addEventListener("click", () => {
+  const tbody = document.getElementById("depenses-body");
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td><input type="text" placeholder="Autre dépense"></td>
+    <td><input type="number" placeholder="0"></td>
+  `;
+  tbody.appendChild(row);
+});
 
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    localStorage.removeItem('loggedInUser');
-    window.location.href = 'index.html';
-  });
+// Calcul du solde
+document.getElementById("calculer-solde").addEventListener("click", () => {
+  const revenus = document.querySelectorAll("#revenus-body input[type='number']");
+  const depenses = document.querySelectorAll("#depenses-body input[type='number']");
+  
+  let totalRevenus = 0;
+  let totalDepenses = 0;
 
-  document.getElementById('addIncome').addEventListener('click', () => {
-    const amount = parseInt(document.getElementById('incomeAmount').value);
-    const desc = document.getElementById('incomeDesc').value;
-    user.incomes.push({ amount, desc });
-    localStorage.setItem('users', JSON.stringify(users));
-    renderList('incomeList', user.incomes);
-  });
+  revenus.forEach(r => totalRevenus += Number(r.value) || 0);
+  depenses.forEach(d => totalDepenses += Number(d.value) || 0);
 
-  document.getElementById('addExpense').addEventListener('click', () => {
-    const amount = parseInt(document.getElementById('expenseAmount').value);
-    const desc = document.getElementById('expenseDesc').value;
-    user.expenses.push({ amount, desc });
-    localStorage.setItem('users', JSON.stringify(users));
-    renderList('expenseList', user.expenses);
-  });
-
-  document.getElementById('calculateBalance').addEventListener('click', () => {
-    const totalIncome = user.incomes.reduce((sum, i) => sum + i.amount, 0);
-    const totalExpense = user.expenses.reduce((sum, e) => sum + e.amount, 0);
-    const balance = totalIncome - totalExpense;
-    document.getElementById('balanceDisplay').textContent = `Solde : ${balance.toLocaleString()} Ariary`;
-  });
-
-  function renderList(listId, data) {
-    const ul = document.getElementById(listId);
-    ul.innerHTML = '';
-    data.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.desc} - ${item.amount.toLocaleString()} AR`;
-      ul.appendChild(li);
-    });
-  }
-
-  renderList('incomeList', user.incomes);
-  renderList('expenseList', user.expenses);
-}
-
-// Theme toggle
-if (document.getElementById('themeToggle')) {
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    document.body.classList.toggle('theme-dark');
-  });
-}
+  const solde = totalRevenus - totalDepenses;
+  document.getElementById("solde-affiche").textContent = `Solde restant : ${solde.toLocaleString()} AR`;
+});
