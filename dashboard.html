@@ -1,45 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tableau de bord - My-Budget_Local</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - My Budget Local</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-light">
-  <nav class="navbar">
-    <span class="logo">My-Budget_Local</span>
-    <div class="nav-right">
-      <span id="welcomeUser"></span>
-      <button id="themeToggle" class="btn-secondary">Changer thème</button>
-      <button id="logoutBtn" class="btn-danger">Déconnexion</button>
-    </div>
-  </nav>
 
-  <main class="dashboard">
-    <section>
-      <h2>Revenus</h2>
-      <input type="number" id="incomeAmount" placeholder="Montant en Ariary">
-      <input type="text" id="incomeDesc" placeholder="Description">
-      <button id="addIncome" class="btn-primary">Ajouter revenu</button>
-      <ul id="incomeList"></ul>
-    </section>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-left">
+    <span class="project-name">My-Budget_Local</span>
+    <span id="greeting" class="user-greeting"></span>
+  </div>
+  <div class="nav-right">
+    <select id="themeSelect" class="theme-selector">
+      <option value="theme-light">Clair</option>
+      <option value="theme-dark">Sombre</option>
+      <option value="theme-gradient">Dégradé</option>
+    </select>
+    <button id="logout" class="btn-small">Déconnexion</button>
+  </div>
+</nav>
 
-    <section>
-      <h2>Dépenses</h2>
-      <input type="number" id="expenseAmount" placeholder="Montant en Ariary">
-      <input type="text" id="expenseDesc" placeholder="Description">
-      <button id="addExpense" class="btn-primary">Ajouter dépense</button>
-      <ul id="expenseList"></ul>
-    </section>
+<!-- Container -->
+<div class="container">
+  <h1>Calculateur de Budget</h1>
 
-    <section>
-      <button id="calculateBalance" class="btn-calc">Calculer ton solde</button>
-      <p id="balanceDisplay"></p>
-    </section>
-  </main>
+  <!-- Revenus -->
+  <section class="budget-section">
+    <h2>Revenus</h2>
+    <table id="incomeTable">
+      <thead>
+        <tr><th>Catégorie</th><th>Montant (€)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Salaire</td><td><input type="number" id="incomeSalary" value="0"></td></tr>
+        <tr><td>Allocations sociales</td><td><input type="number" id="incomeSocial" value="0"></td></tr>
+        <tr><td>Autres revenus</td><td><input type="number" id="incomeOther" value="0"></td></tr>
+      </tbody>
+    </table>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- Dépenses -->
+  <section class="budget-section">
+    <h2>Dépenses</h2>
+    <table id="expenseTable">
+      <thead>
+        <tr><th>Catégorie</th><th>Montant (€)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Loyer et charges</td><td><input type="number" id="expenseRent" value="0"></td></tr>
+        <tr><td>Electricité / Gaz</td><td><input type="number" id="expenseUtilities" value="0"></td></tr>
+        <tr><td>Alimentation</td><td><input type="number" id="expenseFood" value="0"></td></tr>
+        <tr><td>Transport</td><td><input type="number" id="expenseTransport" value="0"></td></tr>
+        <tr><td>Autres dépenses</td><td><input type="number" id="expenseOther" value="0"></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <button id="calculate" class="btn-calc">Calculer ton solde</button>
+  <h2 id="result" class="result-balance"></h2>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

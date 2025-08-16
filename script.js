@@ -1,58 +1,42 @@
-// Gestion du nom utilisateur
-const username = localStorage.getItem("username") || "Utilisateur";
-document.getElementById("username-display").textContent = "Bonjour, " + username;
-
-// Thème clair/sombre
-const themeToggle = document.getElementById("theme-toggle");
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+// Afficher nom utilisateur
+window.addEventListener("load", () => {
+  const user = localStorage.getItem("username") || "Utilisateur";
+  document.getElementById("greeting").textContent = "Bonjour, " + user;
 });
 
-// Charger le thème sauvegardé
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-}
-
-// Logout
-document.getElementById("logout-btn").addEventListener("click", () => {
+// Déconnexion
+document.getElementById("logout").addEventListener("click", () => {
   localStorage.removeItem("username");
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 });
 
-// Ajout revenus
-document.getElementById("add-revenu").addEventListener("click", () => {
-  const tbody = document.getElementById("revenus-body");
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td><input type="text" placeholder="Autre revenu"></td>
-    <td><input type="number" placeholder="0"></td>
-  `;
-  tbody.appendChild(row);
+// Thèmes (fonctionnel PC + mobile)
+const themeSelect = document.getElementById("themeSelect");
+themeSelect.addEventListener("change", function(){
+  document.body.className = this.value;
+  localStorage.setItem("theme", this.value);
 });
 
-// Ajout dépenses
-document.getElementById("add-depense").addEventListener("click", () => {
-  const tbody = document.getElementById("depenses-body");
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td><input type="text" placeholder="Autre dépense"></td>
-    <td><input type="number" placeholder="0"></td>
-  `;
-  tbody.appendChild(row);
+// Charger thème sauvegardé
+window.addEventListener("load", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if(savedTheme){
+    document.body.className = savedTheme;
+    themeSelect.value = savedTheme;
+  }
 });
 
-// Calcul du solde
-document.getElementById("calculer-solde").addEventListener("click", () => {
-  const revenus = document.querySelectorAll("#revenus-body input[type='number']");
-  const depenses = document.querySelectorAll("#depenses-body input[type='number']");
-  
-  let totalRevenus = 0;
-  let totalDepenses = 0;
+// Calcul solde
+document.getElementById("calculate").addEventListener("click", () => {
+  const totalIncome = Number(document.getElementById("incomeSalary").value) +
+                      Number(document.getElementById("incomeSocial").value) +
+                      Number(document.getElementById("incomeOther").value);
 
-  revenus.forEach(r => totalRevenus += Number(r.value) || 0);
-  depenses.forEach(d => totalDepenses += Number(d.value) || 0);
+  const totalExpense = Number(document.getElementById("expenseRent").value) +
+                       Number(document.getElementById("expenseUtilities").value) +
+                       Number(document.getElementById("expenseFood").value) +
+                       Number(document.getElementById("expenseTransport").value) +
+                       Number(document.getElementById("expenseOther").value);
 
-  const solde = totalRevenus - totalDepenses;
-  document.getElementById("solde-affiche").textContent = `Solde restant : ${solde.toLocaleString()} AR`;
+  document.getElementById("result").textContent = "Solde total : €" + (totalIncome - totalExpense);
 });
